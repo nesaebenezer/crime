@@ -4,10 +4,17 @@
   "version": "1.0.0",
   "description": "A comprehensive crime analysis platform using DSA concepts for pattern detection",
   "author": "CSE Internship Project",
-  "keywords": ["crime-analysis", "data-structures", "algorithms", "react", "typescript", "academic-project"],
+  "keywords": [
+    "crime-analysis",
+    "data-structures",
+    "algorithms",
+    "react",
+    "typescript",
+    "academic-project"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/crime-pattern-detection.git"
+    "url": "git+https://github.com/yourusername/crime-pattern-detection.git"
   },
   "homepage": "https://serene-faun-924075.netlify.app",
   "type": "module",
@@ -39,5 +46,10 @@
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.3.0",
     "vite": "^5.4.2"
+  },
+  "main": "app.js",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yourusername/crime-pattern-detection/issues"
   }
 }
