@@ -1,10 +1,10 @@
 # Crime Pattern Detection System
 
-A comprehensive web-based crime analysis platform built as part of a 2nd-year Computer Science Engineering internship project. This system uses fundamental Data Structures and Algorithms (DSA) concepts to analyze crime patterns from CSV datasets.
+A comprehensive HTML/CSS/JavaScript crime analysis platform built as part of a 2nd-year Computer Science Engineering internship project. This system uses fundamental Data Structures and Algorithms (DSA) concepts to analyze crime patterns from sample datasets.
 
 ## 🚀 Live Demo
 
-**Deployed Application:** [https://serene-faun-924075.netlify.app](https://serene-faun-924075.netlify.app)
+**GitHub Pages:** [https://yourusername.github.io/crime-pattern-detection](https://yourusername.github.io/crime-pattern-detection)
 
 ## 📋 Table of Contents
 
@@ -14,7 +14,7 @@ A comprehensive web-based crime analysis platform built as part of a 2nd-year Co
 - [Installation](#installation)
 - [Usage](#usage)
 - [Project Structure](#project-structure)
-- [API Documentation](#api-documentation)
+- [GitHub Pages Setup](#github-pages-setup)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -25,16 +25,17 @@ A comprehensive web-based crime analysis platform built as part of a 2nd-year Co
 - **Hotspot Detection**: Geographic crime distribution analysis
 - **Time Pattern Recognition**: Temporal crime clustering
 - **Advanced Search**: Multi-criteria crime record filtering
-- **Report Generation**: Comprehensive crime analysis reports
+- **Report Generation**: Comprehensive crime analysis reports with download functionality
 
 ### 📊 Visualization Dashboard
+- Custom HTML5 Canvas charts (no external dependencies)
 - Interactive bar charts for crime type distribution
 - Pie charts for location-based analysis
 - Line charts for time pattern visualization
 - Real-time data filtering and sorting
 
 ### 🔧 Data Management
-- CSV file upload and processing
+- Sample crime dataset included
 - Data validation and quality assessment
 - Export functionality for reports
 - Real-time data statistics
@@ -42,66 +43,71 @@ A comprehensive web-based crime analysis platform built as part of a 2nd-year Co
 ## 🛠 Technology Stack
 
 ### Frontend
-- **React 18** with TypeScript
-- **Tailwind CSS** for styling
-- **Lucide React** for icons
-- **React Router** for navigation
-- **Vite** for build tooling
+- **HTML5** with semantic markup
+- **CSS3** with modern features (Grid, Flexbox, Animations)
+- **Vanilla JavaScript** (ES6+)
+- **HTML5 Canvas** for chart rendering
+- **Font Awesome** for icons
 
-### Backend Logic
-- **Python** for data processing
-- **Pandas** for CSV handling
-- **Matplotlib/Seaborn** for chart generation
-
-### Deployment
-- **Netlify** for hosting
-- **GitHub** for version control
+### No External Dependencies
+- Pure JavaScript implementation
+- Custom chart rendering
+- No frameworks or libraries required
+- Lightweight and fast loading
 
 ## 🧮 DSA Concepts Used
 
 ### 1. Hash Maps (O(1) Operations)
-```typescript
+```javascript
 // Crime type frequency counting
-const crimeTypeHash = new Map<string, number>();
-data.forEach(record => {
-  crimeTypeHash.set(record.type, (crimeTypeHash.get(record.type) || 0) + 1);
-});
+buildHashMaps() {
+    this.data.forEach(record => {
+        const crimeType = record.type;
+        this.crimeTypeHash.set(crimeType, (this.crimeTypeHash.get(crimeType) || 0) + 1);
+    });
+}
 ```
 
 ### 2. Linear Search (O(n) Complexity)
-```typescript
+```javascript
 // Multi-criteria search implementation
-search(filters: SearchFilters): CrimeRecord[] {
-  return this.data.filter(record => {
-    // Apply multiple search criteria
-    return this.matchesAllFilters(record, filters);
-  });
+searchCrimes(filters) {
+    return this.data.filter(record => {
+        // Apply multiple search criteria
+        return this.matchesAllFilters(record, filters);
+    });
 }
 ```
 
 ### 3. Sorting Algorithms (O(n log n))
-```typescript
+```javascript
 // Sort crime types by frequency
-const sortedCrimes = Array.from(crimeTypeHash.entries())
-  .sort((a, b) => b[1] - a[1]);
+getFrequentCrimeTypes(topN = 5) {
+    const sortedCrimes = Array.from(this.crimeTypeHash.entries())
+        .sort((a, b) => b[1] - a[1]);
+    return sortedCrimes.slice(0, topN);
+}
 ```
 
 ### 4. Sliding Window Algorithm
-```python
-# Detect crime clusters using sliding window
-def detect_clusters_sliding_window(self, window_size: int = 7):
-    for i in range(len(sorted_dates) - window_size + 1):
-        window_dates = sorted_dates[i:i + window_size]
-        total_crimes = sum(date_counts[date] for date in window_dates)
-        # Analyze cluster patterns
+```javascript
+// Detect crime clusters using sliding window
+detectClusters(windowSize = 7) {
+    for (let i = 0; i <= sortedDates.length - windowSize; i++) {
+        const windowDates = sortedDates.slice(i, i + windowSize);
+        const totalCrimesInWindow = windowDates.reduce((sum, date) => 
+            sum + (dateCounts.get(date) || 0), 0);
+        // Analyze cluster patterns
+    }
+}
 ```
 
 ## 🚀 Installation
 
 ### Prerequisites
-- Node.js (v16 or higher)
-- Python 3.8+
-- Git
+- Modern web browser (Chrome, Firefox, Safari, Edge)
+- Git (for cloning)
+- Text editor (VS Code, Sublime Text, etc.)
 
 ### Clone Repository
 ```bash
@@ -109,117 +115,97 @@ git clone https://github.com/yourusername/crime-pattern-detection.git
 cd crime-pattern-detection
 ```
 
-### Frontend Setup
+### Local Development
 ```bash
-# Install dependencies
-npm install
+# Option 1: Open directly in browser
+open index.html
 
-# Start development server
-npm run dev
-```
+# Option 2: Use a local server (recommended)
+# Python 3
+python -m http.server 8000
 
-### Python Backend Setup
-```bash
-# Install Python dependencies
-pip install pandas matplotlib seaborn
+# Python 2
+python -m SimpleHTTPServer 8000
 
-# Run analysis script
-python main.py
+# Node.js (if you have it installed)
+npx http-server
+
+# Then open http://localhost:8000 in your browser
 ```
 
 ## 📖 Usage
 
-### 1. Data Upload
-- Navigate to **Data Management** page
-- Upload CSV file with required columns: `id`, `date`, `time`, `type`, `location`
-- System validates data quality automatically
-
-### 2. Analysis Dashboard
-- View comprehensive crime statistics on the **Dashboard**
+### 1. Dashboard Overview
+- View comprehensive crime statistics
 - Explore different visualization types
-- Filter data by time periods and crime types
+- Monitor system status and recent activity
 
-### 3. Search Functionality
-- Use **Search** page for detailed record filtering
-- Apply multiple search criteria simultaneously
+### 2. Crime Type Analysis
+- Detailed breakdown of crime categories
+- Frequency distribution charts
+- Trend analysis and severity levels
+
+### 3. Hotspot Detection
+- Geographic crime distribution
+- Location risk assessment
+- Population and crime rate analysis
+
+### 4. Time Pattern Analysis
+- 24-hour crime distribution
+- Peak hours identification
+- Weekly and seasonal patterns
+
+### 5. Cluster Detection
+- Sliding window algorithm implementation
+- High-activity period identification
+- Risk level classification
+
+### 6. Search Functionality
+- Multi-criteria filtering
+- Real-time search results
 - Export search results
 
-### 4. Report Generation
-- Generate various report types from **Reports** page
-- Download reports in text format
-- Schedule automated report generation
+### 7. Report Generation
+- Multiple report types
+- Downloadable text files
+- Comprehensive analysis summaries
 
 ## 📁 Project Structure
 
 ```
 crime-pattern-detection/
-├── src/
-│   ├── components/          # Reusable UI components
-│   │   ├── charts/         # Chart components
-│   │   ├── Layout.tsx      # Main layout wrapper
-│   │   └── StatCard.tsx    # Statistics display card
-│   ├── pages/              # Application pages
-│   │   ├── Dashboard.tsx   # Main dashboard
-│   │   ├── CrimeTypes.tsx  # Crime type analysis
-│   │   ├── Hotspots.tsx    # Location analysis
-│   │   ├── TimePatterns.tsx # Temporal analysis
-│   │   ├── Clusters.tsx    # Cluster detection
-│   │   ├── Search.tsx      # Search functionality
-│   │   ├── Reports.tsx     # Report generation
-│   │   └── DataManagement.tsx # Data handling
-│   ├── data/               # Data management
-│   │   └── crimeData.ts    # Sample crime dataset
-│   ├── utils/              # Utility functions
-│   │   ├── searchUtils.ts  # Search algorithms
-│   │   └── reportGenerator.ts # Report generation
-│   └── App.tsx             # Main application component
-├── public/                 # Static assets
-├── python/                 # Python analysis scripts
-│   ├── main.py            # Main analysis script
-│   ├── data_loader.py     # CSV data loading
-│   ├── pattern_analyzer.py # DSA implementations
-│   └── chart_generator.py  # Visualization generation
-└── crime_data.csv         # Sample dataset
+├── index.html              # Main HTML file
+├── styles.css              # CSS styles and responsive design
+├── data.js                 # Sample crime dataset
+├── dsa.js                  # DSA implementations and algorithms
+├── charts.js               # Custom chart rendering with Canvas
+├── app.js                  # Main application logic
+├── README.md               # Project documentation
+└── assets/                 # Additional assets (if any)
 ```
 
-## 🔧 API Documentation
+## 🌐 GitHub Pages Setup
 
-### Search Engine
-```typescript
-interface SearchFilters {
-  query: string;        // Text search across multiple fields
-  crimeType: string;    // Filter by specific crime type
-  location: string;     // Location-based filtering
-  dateFrom: string;     // Start date filter
-  dateTo: string;       // End date filter
-}
+### 1. Enable GitHub Pages
+1. Go to your repository on GitHub
+2. Click on **Settings** tab
+3. Scroll down to **Pages** section
+4. Under **Source**, select **Deploy from a branch**
+5. Choose **main** branch and **/ (root)** folder
+6. Click **Save**
 
-class CrimeSearchEngine {
-  search(filters: SearchFilters): CrimeRecord[]
-  getSuggestions(query: string, field: 'type' | 'location'): string[]
-  getUniqueValues(field: keyof CrimeRecord): string[]
-}
+### 2. Access Your Site
+Your site will be available at:
+```
+https://yourusername.github.io/crime-pattern-detection
 ```
 
-### Report Generator
-```typescript
-interface ReportData {
-  title: string;
-  generatedAt: string;
-  period: string;
-  summary: ReportSummary;
-  analysis: any;
-}
+### 3. Custom Domain (Optional)
+1. Add a `CNAME` file to your repository root
+2. Add your custom domain to the file
+3. Configure DNS settings with your domain provider
 
-class ReportGenerator {
-  generateSummaryReport(period: string): ReportData
-  generateTrendReport(period: string): ReportData
-  generateHotspotReport(period: string): ReportData
-  downloadReport(reportData: ReportData): void
-}
-```
-
-## 🎯 Key Algorithms
+## 🔧 Key Algorithms
 
 ### 1. Crime Frequency Analysis
 - **Time Complexity**: O(n) for counting, O(n log n) for sorting
@@ -243,11 +229,17 @@ class ReportGenerator {
 
 ## 📊 Sample Data Format
 
-```csv
-id,date,time,type,location
-1,2024-01-15,14:30,Theft,Downtown
-2,2024-01-15,22:15,Burglary,Residential Area
-3,2024-01-16,08:45,Vandalism,Park District
+The system includes a sample dataset with 40 crime records:
+
+```javascript
+{
+    id: 1,
+    date: '2024-01-15',
+    time: '14:30',
+    type: 'Theft',
+    location: 'Downtown',
+    description: 'Shoplifting incident at retail store on Main Street'
+}
 ```
 
 ## 🤝 Contributing
@@ -259,14 +251,19 @@ id,date,time,type,location
 5. Open a Pull Request
 
 ### Development Guidelines
-- Follow TypeScript best practices
+- Follow JavaScript ES6+ standards
 - Maintain consistent code formatting
 - Add comments for complex algorithms
 - Update documentation for new features
+- Test across different browsers
 
-## 📝 License
+## 📝 Browser Compatibility
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- ✅ Chrome 60+
+- ✅ Firefox 55+
+- ✅ Safari 12+
+- ✅ Edge 79+
+- ✅ Mobile browsers (iOS Safari, Chrome Mobile)
 
 ## 🎓 Academic Context
 
@@ -274,9 +271,9 @@ This project was developed as part of a 2nd-year Computer Science Engineering in
 
 - **Data Structures**: Hash maps, arrays, sets
 - **Algorithms**: Searching, sorting, sliding window
+- **Web Development**: HTML5, CSS3, Vanilla JavaScript
+- **Data Visualization**: Custom chart implementations
 - **Software Engineering**: Modular design, clean code principles
-- **Web Development**: Modern React patterns, responsive design
-- **Data Analysis**: Statistical analysis, pattern recognition
 
 ## 📞 Contact
 
@@ -289,8 +286,15 @@ This project was developed as part of a 2nd-year Computer Science Engineering in
 
 - Thanks to the Computer Science Engineering department for project guidance
 - Inspiration from real-world crime analysis systems
-- Open source community for tools and libraries used
+- Font Awesome for icons
+- Modern web standards and best practices
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
 **⭐ Star this repository if you found it helpful!**
+
+**🔗 Perfect for GitHub Pages deployment - no build process required!**
